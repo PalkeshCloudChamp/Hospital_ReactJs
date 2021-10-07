@@ -1,0 +1,25 @@
+table,th,td{
+padding: 5px 5px 5px 50px;
+/* padding: 5px; */
+color: darkgreen;
+}
+h3{
+    color: darkblue;
+}
+.headingDiv{
+    background-color: greenyellow;
+    height: 50px;
+}
+body{
+    background-color: white;
+}
+.mainDiv{
+    display: inline-flex;
+}
+.taskClass{
+    width: auto;
+    float: left;
+}
+div{
+    width: 100%;
+}
