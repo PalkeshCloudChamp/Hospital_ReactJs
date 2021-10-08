@@ -8,5 +8,16 @@ button{
 }
 
 body{
-    background-color: blueviolet;
+    background-color: lightgreen;
+    padding: 0% 2%;
+}
+button{
+    /* margin-left: 50%; */
+    background-color: purple;
+    color: white;
+    width: 96%;
+    border-radius: 5px;
+}
+label{
+    padding-left: 5px;
 }

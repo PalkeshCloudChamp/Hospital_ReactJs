@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import FormDom from '../formDom';
-import UpdateNurseSec from './updateNurseSecureCall';
-class  AddNurse extends Component{
+import UpdateRoomSec from './updateRoomSecureCall';
+class  UpdateRoom extends Component{
     // info = props.location.sta.info.data.value;
     constructor(props){
         super(props);
         this.info = props.location.state;
+        console.log(this.info);
     this.state = {
     bodyCompo : {
-        nrsId : {type : "number" , value : ""},
-        nrsName : {type : "text" , value : ""},
-        gender : {type : "dropdown" , value:['Male','Female','Trans'],selected : "Female"},
-        nrsNo : {type : "text" , value : ""},
-        nrsEmail : {type : "email" , value : ""},
-        nrsDOB : {type : "date" , value : ""},
-        wardAssi : {type : "number" , value : ""},
-        salary : {type : 'number' , value : ""}
+        roomNo : {type : "number",readonly : "true", value : this.info['roomNo']},
+        wardNo : {type : "number" , value : this.info['wardNo']},
+        roomType : {type : "text",value : this.info['roomType']},
+        occupied : {type : "text" , value : this.info['occupied']},
+        oneDayCharge : {type : "number" , value : this.info['oneDayCharge']},
     }
 }
-this.updateNurse = new UpdateNurseSec();
+this.updateRoom = new UpdateRoomSec();
 }
     submitData=()=>{
         let updatedValuesObj = document.getElementsByClassName('FormClass')
@@ -30,19 +28,16 @@ this.updateNurse = new UpdateNurseSec();
             // console.log(test , updatedValuesObj[i].value , postBody);
         }
         console.log(postBody);
-        this.updateNurse.addNurse(postBody)
+        this.updateRoom.updateRoom(postBody ,parseInt(postBody['roomNo']))
         .then(res=>{
-            alert(res);
-            this.props.history.push('/nurse');
+            alert("Room Updated");
+            this.props.history.push('/Room');
         })
         .catch(err=>{
             console.log(err);
         })
     }
     render(){
-        if(sessionStorage.getItem('stPDesi') !== "Admin"){
-            this.props.history.push('/homepage')
-        }
         return (
             <>
             <FormDom body = {this.state.bodyCompo}/>
@@ -53,4 +48,4 @@ this.updateNurse = new UpdateNurseSec();
         );
     }
 }
-export default AddNurse;
+export default UpdateRoom;

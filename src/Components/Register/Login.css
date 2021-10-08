@@ -7,7 +7,7 @@ button{
     width: 100%;
 }
 label{
-    padding-right: 100%;
+    /* padding-right: 100%; */
     font-weight: 1000;
 }
 .text-danger{

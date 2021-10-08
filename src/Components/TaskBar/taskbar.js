@@ -4,14 +4,15 @@ class TaskBar extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            tables : ["Admin",'Doctor','Nurse','Wardboy','Staff','Homepage'],
+            tables : ["Admin",'Doctor','Nurse','Wardboy','Staff','Homepage','Room'],
             tableLinks : {
                 Homepage : "/homepage",
                 Doctor : "/doctor",
                 Nurse : "/nurse",
                 Wardboy : "/wardboy",
                 Staff : "/staff",
-                Patient : "/patient"
+                Patient : "/patient",
+                Room : "/room"
             }
          }
     }
@@ -23,13 +24,13 @@ class TaskBar extends Component {
         let Desi = sessionStorage.getItem('stPDesi')
         console.log("Your Designation:- " , Desi);
         if(Desi == 'Admin'){
-            this.setState({tables : ["Homepage",'Patient' ,'Doctor','Nurse','Wardboy','Staff']})
+            this.setState({tables : ["Homepage",'Patient' ,'Doctor','Nurse','Wardboy','Staff','Room']})
         }
         else if(Desi == 'Doctor'){
-            this.setState({tables : ['Homepage','Patient' ,'Nurse','Wardboy']})
+            this.setState({tables : ['Homepage','Patient' ,'Nurse','Wardboy','Room']})
         }
         else if(Desi == 'Nurse'){
-            this.setState({tables : ["Homepage",'Patient' ,'Doctor','Wardboy']})
+            this.setState({tables : ["Homepage",'Patient' ,'Doctor','Wardboy','Room']})
         }
         else{
             this.setState({tables : []})
@@ -38,7 +39,8 @@ class TaskBar extends Component {
     render() { 
         return (
         <nav className="navbar navbar-dark">
-                <ul>{
+                <ul>
+                    {
                     this.state.tables.map(item=>{
                         return(
                         <>

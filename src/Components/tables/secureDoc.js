@@ -10,7 +10,11 @@ export class SecureDoc{
         return response
     }
     deleteData(deleteLink , id){
-            let response =  axios.delete(`${deleteLink}/${id}`);
+            let response =  axios.delete(`${deleteLink}/${id}`,{
+                headers : {
+                    Authorization : sessionStorage.getItem('Token')
+                }
+            });
             return response
     }
 } 

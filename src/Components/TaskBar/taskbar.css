@@ -1,7 +1,10 @@
 nav{
-    background-color: chartreuse;
+    background-color: black;
     height: 100VH;
 }
 li{
     list-style-type: none;
 }
+/* img{
+    width: 100%;
+} */

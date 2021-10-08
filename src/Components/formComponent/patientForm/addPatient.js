@@ -39,6 +39,10 @@ this.updatePat = new UpdatePatSec();
         })
     }
     render(){
+        let desi = sessionStorage.getItem('stPDesi')
+        if(desi === "Wardboy" || desi === "Management"){
+            this.props.history.push('/homepage')
+        }
         return (
             <>
             <FormDom body = {this.state.bodyCompo}/>

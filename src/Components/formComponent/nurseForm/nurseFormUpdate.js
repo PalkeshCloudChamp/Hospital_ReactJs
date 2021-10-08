@@ -11,7 +11,7 @@ class  UpdateNurse extends Component{
     bodyCompo : {
         nrsId : {type : "number" , value : this.info['nrsId'], label : "nrsId" , readonly : "true"},
         nrsName : {type : "text" , value : this.info['nrsName']},
-        gender : {type : "dropdown" , value:['Male','Female','Trans'],selected : this.info['gender']},
+        gender : {type : "dropdown" , value:['Male','Female','Trans'],select : this.info['gender']},
         nrsNo : {type : "text" , value : this.info['nrsNo']},
         nrsEmail : {type : "email" , value : this.info['nrsEmail']},
         nrsDOB : {type : "date" , value : this.info['nrsDOB']},

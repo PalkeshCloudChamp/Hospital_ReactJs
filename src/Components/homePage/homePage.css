@@ -1,23 +1,21 @@
 table,th,td{
 padding: 5px 5px 5px 50px;
 /* padding: 5px; */
-color: darkgreen;
+color: black;
 }
 h3{
     color: darkblue;
 }
 .headingDiv{
-    background-color: greenyellow;
+    background-color: lightgreen;
+    color: white;
     height: 50px;
-}
-body{
-    background-color: white;
 }
 .mainDiv{
     display: inline-flex;
 }
 .taskClass{
-    width: auto;
+    width: 20%;
     float: left;
 }
 div{

@@ -6,12 +6,16 @@ class  UpdateDoc extends Component{
     constructor(props){
         super(props);
         this.info = props.location.state;
-        console.log(this.info);
+        console.log("History:-",this.props.history)
+        console.log("History:-",this.info['gender'])
+        if(this.info === undefined){
+            props.history.push('/homepage')
+        }
     this.state = {
     bodyCompo : {
         docId : {type : "number" , value : this.info['docId'], label : "DocId" , readonly : "true"},
         docName : {type : "text" , value : this.info['docName']},
-        gender : {type : "dropdown" , value:['male','female','trans'],select : "male"},
+        gender : {type : "dropdown" , value:['male','female','trans'],select : this.info['gender']},
         docNo : {type : "text" , value : this.info['docNo']},
         docEmail : {type : "email" , value : this.info['docEmail']},
         docNo : {type : "date" , value : this.info['docDOB']},
@@ -38,7 +42,15 @@ this.updateDoc = new UpdateDocSec();
             console.log(err);
         })
     }
+    componentDidMount(prevProp){
+        if(this.info == undefined){
+            console.log("History:-",this.props.history)
+        }
+    }
     render(){
+        if(this.info == undefined){
+            this.props.history.push('/homepage')
+        }
         return (
             <>
             <FormDom body = {this.state.bodyCompo}/>

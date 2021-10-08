@@ -7,7 +7,8 @@ class NurseTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data : []
+            data : [],
+            showAdd : sessionStorage.getItem('stPDesi')
         }
         this.formElement = {
             docName : {type: "text",value:""},
@@ -41,7 +42,7 @@ class NurseTable extends Component {
             <div style={{display:"block"}}>
         <TaskBar/></div>
         <div style={{display:"block" , width:"600%"}}>
-        {this.state.data.length>0 ? <TableDom headers={Object.keys(this.state.data[0])} body= {this.state.data} link="http://localhost:9080/api/deleteNurse" getLink = "http://localhost:9080/api/showNurse" updateURL = "/updateNurse" addURL = "/addNurse" props={this.props} pkId = {Object.keys(this.state.data[0])[0]}/> : null}
+        {this.state.data.length>0 ? <TableDom showAdd = {this.state.showAdd} showUpdate = {this.state.showAdd} showDelete = {this.state.showAdd} headers={Object.keys(this.state.data[0])} body= {this.state.data} link="http://localhost:9080/api/deleteNurse" getLink = "http://localhost:9080/api/showNurse" updateURL = "/updateNurse" addURL = "/addNurse" props={this.props} pkId = {Object.keys(this.state.data[0])[0]}/> : null}
         </div></div></> );
     }
 }

@@ -42,6 +42,9 @@ this.updateStaff = new UpdateStaffSec();
         })
     }
     render(){
+        if(sessionStorage.getItem('stPDesi') !== "Admin"){
+            this.props.history.push('/homepage')
+        }
         return (
             <>
             <FormDom body = {this.state.bodyCompo}/>

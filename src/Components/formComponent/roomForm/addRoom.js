@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import FormDom from '../formDom';
-import UpdateNurseSec from './updateNurseSecureCall';
-class  AddNurse extends Component{
+import UpdateRoomSec from './updateRoomSecureCall';
+class  AddRoom extends Component{
     // info = props.location.sta.info.data.value;
     constructor(props){
         super(props);
         this.info = props.location.state;
     this.state = {
     bodyCompo : {
-        nrsId : {type : "number" , value : ""},
-        nrsName : {type : "text" , value : ""},
-        gender : {type : "dropdown" , value:['Male','Female','Trans'],selected : "Female"},
-        nrsNo : {type : "text" , value : ""},
-        nrsEmail : {type : "email" , value : ""},
-        nrsDOB : {type : "date" , value : ""},
-        wardAssi : {type : "number" , value : ""},
-        salary : {type : 'number' , value : ""}
+        roomNo : {type : "number"},
+        wardNo : {type : "number" , value : ""},
+        roomType : {type : "text"},
+        occupied : {type : "text" , value : ""},
+        oneDayCharge : {type : "number" , value : ""}
     }
 }
-this.updateNurse = new UpdateNurseSec();
+this.updateRoom = new UpdateRoomSec();
 }
     submitData=()=>{
         let updatedValuesObj = document.getElementsByClassName('FormClass')
@@ -30,10 +27,10 @@ this.updateNurse = new UpdateNurseSec();
             // console.log(test , updatedValuesObj[i].value , postBody);
         }
         console.log(postBody);
-        this.updateNurse.addNurse(postBody)
+        this.updateRoom.addRoom(postBody)
         .then(res=>{
             alert(res);
-            this.props.history.push('/nurse');
+            this.props.history.push('/room');
         })
         .catch(err=>{
             console.log(err);
@@ -53,4 +50,4 @@ this.updateNurse = new UpdateNurseSec();
         );
     }
 }
-export default AddNurse;
+export default AddRoom;

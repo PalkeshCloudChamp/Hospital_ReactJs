@@ -84,9 +84,13 @@ class TableDom extends Component {
                     }
                 </div> : null}
                 <div id="addBtn">
+                { this.props.showAdd === undefined?
                 <a href={ this.props.addURL } class="btn btn-info btn-lg">
                     <span class="glyphicon glyphicon-plus-sign"></span> Add
-                </a></div>
+                </a> : this.props.showAdd ? <a href={ this.props.addURL } class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add
+                </a> : null
+                }</div>
                 <table className="table table-striped">
                     <thead><tr>
                         {
@@ -108,7 +112,9 @@ class TableDom extends Component {
                                 return (<tr onClick={() => this.getValues(item)}>
                                     {this.props.headers.map((it, po) => {
                                         return (
-                                            <td>{item[it]}</td>
+                                            <td>
+                                                {item[it].toString()}
+                                            </td>
                                         )
                                     }
                                     )}

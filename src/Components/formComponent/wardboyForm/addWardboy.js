@@ -40,6 +40,9 @@ this.updateWardboy = new UpdateWardboySec();
         })
     }
     render(){
+        if(sessionStorage.getItem('stPDesi') !== "Admin"){
+            this.props.history.push('/wardboy')
+        }
         return (
             <>
             <FormDom body = {this.state.bodyCompo}/>

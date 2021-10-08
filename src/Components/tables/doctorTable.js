@@ -10,7 +10,9 @@ class DoctorTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data : []
+            data : [],
+            desi : sessionStorage.getItem('Token'),
+            showAdd : ['Admin'].includes(sessionStorage.getItem('stPDesi'))
         }
         this.formElement = {
             docName : {type: "text",value:""},
@@ -42,6 +44,8 @@ class DoctorTable extends Component {
         console.log('UnAuthorized Person.');
         this.props.history.push('/');
     }
+    console.log("Are equal?=",this.state.showAdd == sessionStorage.getItem('stPDesi'));
+    console.log("Values:- ",this.state.showAdd,sessionStorage.getItem('stPDesi'));
         return ( 
         <>
         <div style={{display:"flex", float:"left"}}>
@@ -49,7 +53,7 @@ class DoctorTable extends Component {
         <TaskBar/></div>
         {/* <FormDom body = {this.formElement}/> */}
         <div style={{display:"block" , width:"600%"}}>
-        {this.state.data.length>0 ? <TableDom headers={Object.keys(this.state.data[0])} body= {this.state.data} link="http://localhost:9080/api/deleteDoctor" getLink = "http://localhost:9080/api/showDoctor" updateURL = "/updateDoc" addURL = "/addDoc" props={this.props} pkId = {Object.keys(this.state.data[0])[0]}/> : null}
+        {this.state.data.length>0 ? <TableDom headers={Object.keys(this.state.data[0])} showAdd = {this.state.showAdd} showUpdate = {this.state.showAdd} showDelete = {this.state.showAdd} body= {this.state.data} link="http://localhost:9080/api/deleteDoctor" getLink = "http://localhost:9080/api/showDoctor" updateURL = "/updateDoc" addURL = "/addDoc" props={this.props} pkId = {Object.keys(this.state.data[0])[0]}/> : null}
         </div></div></> );
     }
 }
