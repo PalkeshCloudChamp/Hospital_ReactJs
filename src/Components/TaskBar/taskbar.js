@@ -4,7 +4,7 @@ class TaskBar extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            tables : ["Admin",'Doctor','Nurse','Wardboy','Staff','Homepage','Room'],
+            tables : ["Admin",'Doctor','Nurse','Wardboy','Staff','Homepage','Room','Medicine','Bill',"MedicineBill"],
             tableLinks : {
                 Homepage : "/homepage",
                 Doctor : "/doctor",
@@ -12,7 +12,10 @@ class TaskBar extends Component {
                 Wardboy : "/wardboy",
                 Staff : "/staff",
                 Patient : "/patient",
-                Room : "/room"
+                Room : "/room",
+                Medicine : "/medicine",
+                Bill : "/bill",
+                MedicineBill : "/medicineBill"
             }
          }
     }
@@ -24,13 +27,19 @@ class TaskBar extends Component {
         let Desi = sessionStorage.getItem('stPDesi')
         console.log("Your Designation:- " , Desi);
         if(Desi == 'Admin'){
-            this.setState({tables : ["Homepage",'Patient' ,'Doctor','Nurse','Wardboy','Staff','Room']})
+            this.setState({tables : ["Homepage",'Patient' ,'Doctor','Nurse','Wardboy','Staff','Room','Medicine','Bill',"MedicineBill"]})
         }
         else if(Desi == 'Doctor'){
-            this.setState({tables : ['Homepage','Patient' ,'Nurse','Wardboy','Room']})
+            this.setState({tables : ['Homepage','Patient' ,'Nurse','Wardboy']})
         }
         else if(Desi == 'Nurse'){
             this.setState({tables : ["Homepage",'Patient' ,'Doctor','Wardboy','Room']})
+        }
+        else if(Desi == 'Management'){
+            this.setState({tables : ["Homepage",'Patient' ,'Doctor','Wardboy','Room','Bill']})
+        }
+        else if(Desi == 'Medical'){
+            this.setState({tables : ["Homepage","Patient",'Medicine',"MedicineBill"]})
         }
         else{
             this.setState({tables : []})

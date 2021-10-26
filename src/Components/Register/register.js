@@ -2,7 +2,7 @@ import React , {Component} from 'react'
 import { MakeForm } from './makeForm';
 import "./Login.css"
 class Login extends Component {
-    userTypes = ["User",'Admin','Doctor','Management','Nurse','Wardboy']
+    userTypes = ["User",'Admin','Doctor','Management','Nurse','Wardboy','Medical']
     gender = ["Gender",'Male','Female','Trans']
     Designation = ['Doc','Nurse','WardBoy','Admin','Management']
     constructor(props) {
@@ -12,7 +12,7 @@ class Login extends Component {
     render() { 
         return ( 
         <>
-        <MakeForm ddValue = {this.userTypes} gender = {this.gender} Designation = {this.Designation}></MakeForm>
+        <MakeForm ddValue = {this.userTypes} gender = {this.gender} Designation = {this.Designation} props = {this.props}></MakeForm>
         </> );
     }
 }

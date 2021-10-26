@@ -13,7 +13,7 @@ class  UpdateNurse extends Component{
         nrsName : {type : "text" , value : this.info['nrsName']},
         gender : {type : "dropdown" , value:['Male','Female','Trans'],select : this.info['gender']},
         nrsNo : {type : "text" , value : this.info['nrsNo']},
-        nrsEmail : {type : "email" , value : this.info['nrsEmail']},
+        nrsEmail : {type : "email" , value : this.info['nrsEmail'],pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"},
         nrsDOB : {type : "date" , value : this.info['nrsDOB']},
         wardAssi : {type : "number" , value : this.info['wardAssi']},
         salary : {type : 'number' , value : this.info['salary']}

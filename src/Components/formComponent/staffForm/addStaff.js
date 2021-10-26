@@ -9,15 +9,15 @@ class  AddStaff extends Component{
     this.state = {
     bodyCompo : {
         staffId : {type : "text"},
-        stPName : {type : "text" , value : ""},
+        stPName : {type : "text" , value : "", pattern : ".{3,}"},
         gender : {type : "dropdown" , value:['Male','Female','Trans'],select : ""},
         stPNo : {type : "text" , value : ""},
-        stPEmail : {type : "email" , value : ""},
+        stPEmail : {type : "email" , value : "",pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"},
         stPDOB : {type : "date" , value : ""},
         stPDesi : {type : "dropdown" , value:['Doctor','Wardboy','Nurse','Management','Admin'],select : "Doctor"},
         stPAdd : {type : "text" , value : ""},
         stPSal : {type : "number" , value : ""},
-        stPass : {type : "password" , value : ""},
+        stPass : {type : "password" , value : "", pattern : ".{8,}"},
     }
 }
 this.updateStaff = new UpdateStaffSec();

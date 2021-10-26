@@ -14,11 +14,12 @@ class  UpdateDoc extends Component{
     this.state = {
     bodyCompo : {
         docId : {type : "number" , value : this.info['docId'], label : "DocId" , readonly : "true"},
-        docName : {type : "text" , value : this.info['docName']},
+        docName : {type : "text" , value : this.info['docName'],pattern : ".{3,}"},
         gender : {type : "dropdown" , value:['male','female','trans'],select : this.info['gender']},
         docNo : {type : "text" , value : this.info['docNo']},
-        docEmail : {type : "email" , value : this.info['docEmail']},
+        docEmail : {type : "email" , value : this.info['docEmail'],pattern : "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"},
         docNo : {type : "date" , value : this.info['docDOB']},
+        charge : {type : "number" , value : this.info['charge']},
     }
 }
 this.updateDoc = new UpdateDocSec();

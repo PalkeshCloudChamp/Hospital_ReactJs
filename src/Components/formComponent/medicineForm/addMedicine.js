@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import FormDom from '../formDom';
-import UpdateNurseSec from './updateNurseSecureCall';
-class  AddNurse extends Component{
+import UpdateMedicineSec from './updateMedicineSecureCall';
+class  AddMedicine extends Component{
     // info = props.location.sta.info.data.value;
     constructor(props){
         super(props);
         this.info = props.location.state;
     this.state = {
     bodyCompo : {
-        nrsId : {type : "number" , value : ""},
-        nrsName : {type : "text" , value : ""},
-        gender : {type : "dropdown" , value:['Male','Female','Trans'],selected : "Female"},
-        nrsNo : {type : "text" , value : ""},
-        nrsEmail : {type : "email" , value : "",pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"},
-        nrsDOB : {type : "date" , value : ""},
-        wardAssi : {type : "number" , value : ""},
-        salary : {type : 'number' , value : ""}
+        medicineId : {type : "number"},
+        medName : {type : "text"},
+        medType : {type : "text"},
+        manuDate : {type : "date"},
+        expDate : {type : "date"},
+        manufacturer : {type : "text"},
+        purDate : {type : "date"},
+        price : {type : "number"}
     }
 }
-this.updateNurse = new UpdateNurseSec();
+this.updateMedicine = new UpdateMedicineSec();
 }
     submitData=()=>{
         let updatedValuesObj = document.getElementsByClassName('FormClass')
@@ -30,17 +30,17 @@ this.updateNurse = new UpdateNurseSec();
             // console.log(test , updatedValuesObj[i].value , postBody);
         }
         console.log(postBody);
-        this.updateNurse.addNurse(postBody)
+        this.updateMedicine.addMedicine(postBody)
         .then(res=>{
             alert(res);
-            this.props.history.push('/nurse');
+            this.props.history.push('/medicine');
         })
         .catch(err=>{
             console.log(err);
         })
     }
     render(){
-        if(sessionStorage.getItem('stPDesi') !== "Admin"){
+        if(!['Admin','Medical'].includes(sessionStorage.getItem('stPDesi'))){
             this.props.history.push('/homepage')
         }
         return (
@@ -53,4 +53,4 @@ this.updateNurse = new UpdateNurseSec();
         );
     }
 }
-export default AddNurse;
+export default AddMedicine;

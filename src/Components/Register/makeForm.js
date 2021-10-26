@@ -3,7 +3,9 @@ import DD from "./dropDown";
 import axios from 'axios';
 
 class MakeForm extends Component {
-
+constructor(props){
+    super(props)
+}
     state = {
         name: '',
         nameErrorVisi: false,
@@ -11,6 +13,7 @@ class MakeForm extends Component {
         emailerrorVisi: false,
         password: '',
         passerrorVisi: false,
+        doberroVisi : false
     }
 
     validateUserName = evt => {
@@ -80,7 +83,16 @@ class MakeForm extends Component {
         }
     }
 
+    validateDOB = evt =>{
+        // console.log(evt.target.value);
+        let temp_date = new Date(evt.target.value)
+        let now_date = new Date()
+        console.log(now_date - temp_date);
+        this.setState({doberroVisi : (now_date - temp_date) < 0})
+    } 
+
     addNewStaffMember = evt =>{
+        let token = sessionStorage.getItem('Token')
         let data = {
             "name" : this.state.name,
             "email" : this.state.email,
@@ -103,7 +115,14 @@ class MakeForm extends Component {
                 "docNo" : data.phoneNo,
                 "docEmail" : data.email,
                 "docDOB" : data.dob
-            }).then(res =>alert(`Doctor Added Successfully`)).catch(err=>alert("Some error occured while registering doctor"))
+            },
+            {
+                headers : {
+                    'Content-Type' : "application/json",
+                    'Authorization' : sessionStorage.getItem('Token')
+                }
+            }
+            ).then(res =>alert(`Doctor Added Successfully`)).catch(err=>alert("Some error occured while registering doctor"))
         }
         else if(data.userType == "Nurse"){
             axios.post('http://localhost:9080/api/addNurse',{
@@ -114,6 +133,12 @@ class MakeForm extends Component {
                 "nrsEmail" : data.email,
                 "nrsDOB" : data.dob,
                 "salary" : data.salary
+            },
+            {
+                headers : {
+                    'Content-Type' : "application/json",
+                    'Authorization' : sessionStorage.getItem('Token')
+                }
             }).then(res =>alert(`Nurse Added Successfully`)).catch(err=>alert("Some error occured while registering Nurse"))
         }
         else if(data.userType == "Wardboy"){
@@ -125,6 +150,12 @@ class MakeForm extends Component {
                 "wbEmail" : data.email,
                 "wbDOB" : data.dob,
                 "salary" : data.salary
+            },
+            {
+                headers : {
+                    'Content-Type' : "application/json",
+                    'Authorization' : sessionStorage.getItem('Token')
+                }
             }).then(res =>alert(`Wardboy Added Successfully`)).catch(err=>alert("Some error occured while registering Wardboy"))
         }
         axios.post('http://localhost:9080/api/addStaff',{
@@ -138,12 +169,23 @@ class MakeForm extends Component {
             "stPAdd" : data.address,
             "stPSal" : data.salary,
             "stPass" : data.password,
+        },
+        {
+            headers : {
+                'Content-Type' : "application/json",
+                'Authorization' : sessionStorage.getItem('Token')
+            }
         }).then(res =>alert("Staff Member Added Successfully.")).catch(err=>alert("Some error occured while registering Staff"))
+        this.props.props.history.push("/staff")
     }
-
+    calncelButton = evt =>{
+        console.log(this.props.props.history.push('/staff'));
+    }
     render() {
+        // console.log(this.props.props.history.push('/staff'))
         return (<>
             <div className="container card mt-5">
+                <button onClick = {this.calncelButton}>Cancel</button>
                 <form className='card-body'>
                     <div className='form-group mb-3'>
                         <label>StaffId*</label><br></br>
@@ -164,12 +206,13 @@ class MakeForm extends Component {
                         <label>Gender*</label><br></br>
                         <DD val = {this.props.gender} id="gend" key="gend"/>
                         <label>DOB*</label><br></br>
-                        <input type='date' className = "form-control" id="dob" required/>
+                        <input type='date' onChange={this.validateDOB} className = "form-control" id="dob" required/>
+                        <div className="text-danger">{this.state.doberroVisi ? <>Invalid DOB</> : null}</div>
                         <label>Address*</label><br></br>
                         <input type='text' placeholder="Enter value" id="add" className='form-control'/>
                         <label>Salary*</label><br></br>
                         <input type='number' placeholder="Enter value" id="sal" className='form-control'/>
-                        <button type="submit" className="btn btn-primary form-control" onClick = {this.addNewStaffMember} disabled={(this.state.nameErrorVisi || this.state.emailerrorVisi || this.state.passerrorVisi)}>Submit</button>
+                        <button type="submit" className="btn btn-primary form-control" onClick = {this.addNewStaffMember} disabled={(this.state.nameErrorVisi || this.state.emailerrorVisi || this.state.passerrorVisi || this.state.doberroVisi)}>Submit</button>
                     </div>
                 </form>
             </div>

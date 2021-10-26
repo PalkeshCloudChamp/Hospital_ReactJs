@@ -1,0 +1,17 @@
+#mainId{
+    height: 100%;
+}
+#searchId{
+/* width: 30%; */
+float: left;
+}
+#searchBtn{
+    /* width: 30%; */
+    float: right;
+}
+#baseDiv{
+        display: inline-block;
+}
+#checkboxDiv{
+    float: left;
+}

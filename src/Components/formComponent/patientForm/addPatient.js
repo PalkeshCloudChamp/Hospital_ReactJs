@@ -8,13 +8,17 @@ class  AddPat extends Component{
         this.info = props.location.state;
     this.state = {
     bodyCompo : {
-        patId : {type : "number" , value : ""},
-        patName : {type : "text" , value : ""},
-        gender : {type : "dropdown" , value:['male','female','trans']},
-        patNo : {type : "text" , value : ""},
-        patEmail : {type : "email" , value : ""},
-        patDOB : {type : "date" , value : ""},
-        docAssi : {type: "number" , value:""}
+        // patId : {type : "number" , value : ""},
+        patName : {type : "text" , value : "",label : "Patient Name"},
+        gender : {type : "dropdown" , value:['male','female','trans'], label :"Gender"},
+        patNo : {type : "text" , value : "", label :"Patient Mobile Number"},
+        patEmail : {type : "email" , value : "",pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", label :"Email Address"},
+        patDOB : {type : "date" , value : "", label :"Patient DOB"},
+        admitDate : {type : "date" , value : "", label :"Admit Date"},
+        docAssi : {type: "number" , value:"", label :"Assigned Doctor"},
+        roomNo : {type: "number" , value:"", label :"Room Assigned"},
+        patStatus : {type : "dropdown" , value:['not admit','discharged','admit'], label :"Admitted/Discharged"},
+        prescription : {type : "textarea" , value : ""},
     }
 }
 this.updatePat = new UpdatePatSec();

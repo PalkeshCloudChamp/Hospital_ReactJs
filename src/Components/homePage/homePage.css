@@ -21,3 +21,12 @@ h3{
 div{
     width: 100%;
 }
+#nameId{
+    /* float: right; */
+    float: right;
+    /* color: white; */
+}
+h1{
+    /* text-align: center; */
+    margin-left: 25%;
+}

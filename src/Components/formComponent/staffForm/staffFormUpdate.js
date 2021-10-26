@@ -18,7 +18,7 @@ class  UpdateStaff extends Component{
         stPDesi : {type : "dropdown" , value:['Doctor','Wardboy','Nurse','Management','Admin'],select : this.info['stPDesi']},
         stPAdd : {type : "text" , value : this.info['stPAdd']},
         stPSal : {type : "number" , value : this.info['stPSal']},
-        stPass : {type : "text" , value : this.info['stPass']},
+        stPass : {type : "text" , value : this.info['stPass'],pattern : "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"},
     }
 }
 this.updateStaff = new UpdateStaffSec();

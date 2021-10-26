@@ -13,7 +13,7 @@ class  UpdateWardboy extends Component{
         wbName : {type : "text" , value : this.info['wbName']},
         gender : {type : "dropdown" , value:['Male','Female','Trans'],select : this.info['gender']},
         wbNo : {type : "text" , value : this.info['wbNo']},
-        wbEmail : {type : "email" , value : this.info['wbEmail']},
+        wbEmail : {type : "email" , value : this.info['wbEmail'],pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"},
         wbDOB : {type : "date" , value : this.info['wbDOB']},
         wardAssi : {type : "number" , value : this.info['wardAssi']},
         salary : {type : 'number' , value : this.info['salary']}

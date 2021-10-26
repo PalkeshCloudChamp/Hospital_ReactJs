@@ -24,6 +24,13 @@ import WardTable from './Components/tables/wardTable';
 import RoomTable from './Components/tables/roomTable';
 import AddRoom from './Components/formComponent/roomForm/addRoom';
 import UpdateRoom from './Components/formComponent/roomForm/roomFormUpdate';
+import MedicineTable from './Components/tables/medicineTable';
+import AddMedicine from './Components/formComponent/medicineForm/addMedicine';
+import UpdateMedicine from './Components/formComponent/medicineForm/medicineFormUpdate';
+import BillTable from './Components/tables/billTable';
+import MedicineBillTable from './Components/tables/medicineBillTable';
+import AddMedicineBill from './Components/formComponent/medicineBillForm/addMedicineBill';
+import DetailedBillForm from './Components/formComponent/medicineBillForm/detailedBillForm';
 // import FormDom from './Components/formComponent/formDom';
 // import TestingFormDom from './Components/testing_folder/test'
 class App extends Component {
@@ -52,12 +59,18 @@ class App extends Component {
         <Route exact path="/updateWardboy" component = {UpdateWardboy}></Route>
         <Route exact path="/addWardboy" component = {AddWardboy}></Route>
         <Route exact path="/updateStaff" component = {UpdateStaff}></Route>
-        <Route exact path="/addStaff" component = {AddStaff}></Route>
+        <Route exact path="/addStaff" component = {Register}></Route>
         <Route exact path="/ward" component = {WardTable}></Route>
         <Route exact path="/room" component = {RoomTable}></Route>
         <Route exact path="/addRoom" component = {AddRoom}></Route>
         <Route exact path="/updateRoom" component = {UpdateRoom}></Route>
-        
+        <Route exact path="/medicine" component={MedicineTable}></Route>
+        <Route exact path="/addMedicine" component = {AddMedicine}></Route>
+        <Route exact path="/updateMedicine" component = {UpdateMedicine}></Route>
+        <Route exact path="/bill" component={BillTable}></Route>
+        <Route exact path="/medicineBill" component={MedicineBillTable}></Route>
+        <Route exact path="/addMedicineBill" component={AddMedicineBill}></Route>
+        <Route exact path="/detailedBill" component={DetailedBillForm}></Route>
         <Redirect to="/"></Redirect> 
        </Switch>
     </div>

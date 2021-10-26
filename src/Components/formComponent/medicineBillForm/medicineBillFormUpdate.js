@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import FormDom from '../formDom';
-import UpdateNurseSec from './updateNurseSecureCall';
-class  AddNurse extends Component{
+import UpdateMedicineSec from './updateMedicineSecureCall';
+class  UpdateMedicine extends Component{
     // info = props.location.sta.info.data.value;
     constructor(props){
         super(props);
         this.info = props.location.state;
+        console.log(this.info);
     this.state = {
     bodyCompo : {
-        nrsId : {type : "number" , value : ""},
-        nrsName : {type : "text" , value : ""},
-        gender : {type : "dropdown" , value:['Male','Female','Trans'],selected : "Female"},
-        nrsNo : {type : "text" , value : ""},
-        nrsEmail : {type : "email" , value : "",pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"},
-        nrsDOB : {type : "date" , value : ""},
-        wardAssi : {type : "number" , value : ""},
-        salary : {type : 'number' , value : ""}
+        medicineId : {type : "number",readonly : "true", value : this.info['medicineId']},
+        medName : {type : "text", value : this.info['medName']},
+        medType : {type : "text", value : this.info['medType']},
+        manuDate : {type : "date", value : this.info['manuDate']},
+        expDate : {type : "date", value : this.info['expDate']},
+        manufacturer : {type : "text", value : this.info['manufacturer']},
+        purDate : {type : "date", value : this.info['purDate']},
+        price : {type : "number", value : this.info['price']},
     }
 }
-this.updateNurse = new UpdateNurseSec();
+this.updateMedicine = new UpdateMedicineSec();
 }
     submitData=()=>{
         let updatedValuesObj = document.getElementsByClassName('FormClass')
@@ -30,19 +31,16 @@ this.updateNurse = new UpdateNurseSec();
             // console.log(test , updatedValuesObj[i].value , postBody);
         }
         console.log(postBody);
-        this.updateNurse.addNurse(postBody)
+        this.updateMedicine.updateMedicine(postBody ,parseInt(postBody['medicineId']))
         .then(res=>{
-            alert(res);
-            this.props.history.push('/nurse');
+            alert("Medicine Updated");
+            this.props.history.push('/medicine');
         })
         .catch(err=>{
             console.log(err);
         })
     }
     render(){
-        if(sessionStorage.getItem('stPDesi') !== "Admin"){
-            this.props.history.push('/homepage')
-        }
         return (
             <>
             <FormDom body = {this.state.bodyCompo}/>
@@ -53,4 +51,4 @@ this.updateNurse = new UpdateNurseSec();
         );
     }
 }
-export default AddNurse;
+export default UpdateMedicine;

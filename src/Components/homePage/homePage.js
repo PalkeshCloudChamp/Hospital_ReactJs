@@ -34,7 +34,10 @@ class HomePage extends Component{
     return(
     <>
     <center>
-    <div className="headingDiv"><h1>Homepage</h1></div>
+    <div className="headingDiv">
+        <h1>Homepage <h3 id="nameId">Hey, {this.info['stPName']}.....</h3></h1>
+        
+    </div>
     <div className="mainDiv">
     <div align='left' className="taskClass">
     <TaskBar/>

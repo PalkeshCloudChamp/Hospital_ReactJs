@@ -2,27 +2,29 @@ import React, { Component } from "react";
 import FormDom from "./formDom";
 import { SecureDoc } from "./secureDoc";
 import './table.css'
-class TableDom extends Component {
+class AdmittedPatient extends Component {
     state = {
-        data: this.props.body,
-        dataCopy: this.props.body,
-        headers: this.props.headers,
+        data: "",
+        dataCopy: "",
         pagingArr: ['1'],
-        pageSize: this.props.body.length,
+        headers : "",
+        pageSize: "",
         showPagi: this.props.showPagi === undefined ? true : this.props.showPagi,
         showDelete: this.props.showDelete === undefined ? true : this.props.showDelete,
-        showUpdate: this.props.showUpdate === undefined ? true : this.props.showUpdate,
     }
+    // headers = this.state.data === undefined ? "" : Object.keys(this.state.data)
     sc = new SecureDoc();
-    deleteEle = evt => {
-        console.log(evt.target.value);
-        this.sc.deleteData( this.props.link,parseInt(evt.target.value)).then(res => {
-            this.sc.getData(this.props.getLink).then(re => {
+    deleteEle (val) {
+        console.log(val['patId']);
+        // this.sc.deleteData( `http://localhost:9080/api/dischargePatient`,parseInt(val['patId'])).then(res => {
+            this.sc.getData("http://localhost:9080/api/showAdmittedPatient").then(re => {
                 this.setState({ data: re.data.value })
                 this.setState({ dataCopy: re.data.value })
                 console.log(this.state.data);
             })
-        })
+                this.sc.dischargePatient(val['patId'])
+            // )
+        // })
     }
     sortOnThis = evt => {
         this.setState((prevState, prevProp) => {
@@ -61,18 +63,21 @@ class TableDom extends Component {
         console.log(temp);
         this.setState({ data: temp });
     }
-
-    updateOnClick(data){
-        this.props.props.history.push({
-            pathname : this.props.updateURL,
-            state : data
-        });  
-    }
-    componentDidMount(prevProps){
-        console.log(this.props.body);
+    componentDidMount(prevProp){
+        this.sc.getData(`http://localhost:9080/api/showAdmittedPatient`).then(resp=>{
+            this.setState({data : resp.data.value})
+            this.setState({dataCopy : resp.data.value})
+            this.setState({headers : Object.keys(resp.data.value[0])})
+            this.setState({pageSize : resp.data.value.length})
+            console.log("This.State.Data" , this.state.data);
+            console.log(this.state.headers);
+        }).catch(err=>{
+            console.log(err);
+            // this.props.history.push('/homepage')
+        })
+        // console.log(this.props.body);
     }
     render() {
-        console.log(this.props.body);
         return (
             <>{this.state.showPagi ?
                 <div>
@@ -87,18 +92,19 @@ class TableDom extends Component {
 
                     }
                 </div> : null}
-                <div id="addBtn">
+                {/* <div id="addBtn">
                 { this.props.showAdd === undefined?
                 <a href={ this.props.addURL } class="btn btn-info btn-lg">
                     <span class="glyphicon glyphicon-plus-sign"></span> Add
                 </a> : this.props.showAdd ? <a href={ this.props.addURL } class="btn btn-info btn-lg">
                     <span class="glyphicon glyphicon-plus-sign"></span> Add
                 </a> : null
-                }</div>
+                }</div> */}
+                {this.state.headers.length > 0 ? 
                 <table className="table table-striped">
                     <thead><tr>
                         {
-                            this.props.headers.map((item, pos) => {
+                            this.state.headers.map((item, pos) => {
                                 return (
                                     <th>
                                         <a href="#" onClick={this.sortOnThis} value={item} > {item}</a>
@@ -106,7 +112,6 @@ class TableDom extends Component {
                                 )
                             })
                         }
-                        {this.state.showUpdate ? <th>Update</th> : null}
                         {this.state.showDelete ? <th>Delete</th> : null}
                     </tr>
                     </thead>
@@ -114,27 +119,26 @@ class TableDom extends Component {
                         {
                             this.state.data.map((item, pos) => {
                                 return (<tr onClick={() => this.getValues(item)}>
-                                    {this.props.headers.map((it, po) => {
+                                    {this.state.headers.map((it, po) => {
                                         return (
                                             <td>
-                                                {typeof(item[it]) === 'boolean' ? item[it].toString() :item[it]}
+                                                {typeof(item[it]) === 'boolean' ? item[it].toString() : item[it]}
                                             </td>
                                         )
                                     }
                                     )}
-                                    {this.state.showUpdate ? <td> <button value={item} onClick={()=>this.updateOnClick(item)}>Update</button></td> : null}
-                                    {this.state.showDelete ? <td> <button value={item[this.props.pkId]} onClick={this.deleteEle}>Delete</button></td> : null}
+                                    {this.state.showDelete ? <td> <button onClick={()=>this.deleteEle(item)}>Discharge</button></td> : null}
                                 </tr>
                                 )
                             })
                         }
                     </tbody>
                 </table>
-                {/* <div className="container" style={{ textAlign: 'right', size : "24px" }}> */}
-                {/* </div> */}
+                : null
+    }
             </>
         );
     }
 }
 
-export default TableDom;
+export default AdmittedPatient;

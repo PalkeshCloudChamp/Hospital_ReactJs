@@ -13,9 +13,13 @@ class  UpdatePat extends Component{
         patName : {type : "text" , value : this.info['patName']},
         gender : {type : "dropdown" , value:['Male','Female','Trans'],select : this.info['gender']},
         patNo : {type : "text" , value : this.info['patNo']},
-        patEmail : {type : "email" , value : this.info['patEmail']},
+        patEmail : {type : "email" , value : this.info['patEmail'],pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"},
         patDOB : {type : "date" , value : this.info['patDOB']},
+        admitDate : {type : "date" , value : this.info['admitDate'], label :"Admit Date"},
         docAssi : {type : "number" , value : this.info['docAssi']},
+        roomNo : {type: "number" , value:this.info['roomNo'], label :"Room Assigned"},
+        patStatus : {type : "dropdown" , value:['not admit','discharged','admit'],select : this.info['patStatus']},
+        prescription : {type : "textarea" , value : this.info['prescription']},
     }
 }
 this.updatePat = new UpdatePatSec();

@@ -9,11 +9,12 @@ class  AddDoc extends Component{
     this.state = {
     bodyCompo : {
         docId : {type : "number" , value : ""},
-        docName : {type : "text" , value : ""},
+        docName : {type : "text" , value : "",pattern : ".{3,}"},
         gender : {type : "dropdown" , value:['male','female','trans']},
         docNo : {type : "text" , value : ""},
-        docEmail : {type : "email" , value : ""},
+        docEmail : {type : "email" , value : "",pattern : "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"},
         docDOB : {type : "date" , value : ""},
+        charge : {type : "number" , value : ""},
     }
 }
 this.updateDoc = new UpdateDocSec();

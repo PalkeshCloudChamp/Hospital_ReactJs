@@ -12,7 +12,7 @@ class  AddWardboy extends Component{
         wbName : {type : "text" , value : ""},
         gender : {type : "dropdown" , value:['male','female','trans']},
         wbNo : {type : "text" , value : ""},
-        wbEmail : {type : "email" , value : ""},
+        wbEmail : {type : "email" , value : "",pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"},
         wbDOB : {type : "date" , value : ""},
         wardAssi : {type: "number" , value:""},
         salary : {type : 'number' , value : ""}
